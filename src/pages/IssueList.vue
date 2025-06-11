@@ -1,3 +1,30 @@
+<script setup>
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { issues } from '../data/mockData'
+
+const router = useRouter()
+const selectedStatus = ref('')
+
+const filtered = computed(() => {
+  if (selectedStatus.value) {
+    return issues.filter((issue) => {
+      return issue.status === selectedStatus.value
+    })
+  } else {
+    return issues
+  }
+})
+
+function goToDetail(id) {
+  router.push(`/issues/${id}`)
+}
+
+function goToNewIssue() {
+  router.push('/issues/new')
+}
+</script>
+
 <template>
   <div>
     <h1>이슈 목록</h1>
@@ -32,32 +59,7 @@
         }
       "
     >
-      새 이슈 만들기
+      신규 이슈 생성
     </button>
   </div>
 </template>
-
-<script setup>
-import { ref, computed } from 'vue'
-import { issues } from '../data/mockData'
-
-const selectedStatus = ref('')
-
-const filtered = computed(() => {
-  if (selectedStatus.value) {
-    return issues.filter((issue) => {
-      return issue.status === selectedStatus.value
-    })
-  } else {
-    return issues
-  }
-})
-
-function goToDetail(id) {
-  console.log(`이슈 상세 페이지 이동 (id: ${id})`)
-}
-
-function goToNewIssue() {
-  console.log('새 이슈 생성 페이지로 이동')
-}
-</script>
