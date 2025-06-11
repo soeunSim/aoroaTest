@@ -67,8 +67,12 @@ function save() {
     <label>제목</label>
     <input v-model="current.title" />
 
+    <br />
+
     <label>설명</label>
     <textarea v-model="current.description" />
+
+    <br />
 
     <label>상태</label>
     <select v-model="current.status" :disabled="!canChangeStatus">
@@ -78,6 +82,8 @@ function save() {
       <option value="CANCELLED">CANCELLED</option>
     </select>
 
+    <br />
+
     <label>담당자</label>
     <select v-model="current.user" :disabled="!canChangeUser">
       <option :value="null">선택 안함</option>
@@ -86,7 +92,11 @@ function save() {
       </option>
     </select>
 
-    <button @click="save">저장</button>
-    <button @click="router.push('/issues')">목록으로</button>
+    <br />
+
+    <div>
+      <button @click="save">저장</button>
+      <button @click="router.push('/issues')">목록으로</button>
+    </div>
   </div>
 </template>
